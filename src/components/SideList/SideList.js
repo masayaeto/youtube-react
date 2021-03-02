@@ -5,25 +5,24 @@ import SideListItem from '../SideListItem/SideListItem'
 import Style from './SideList.module.scss'
 
 function SideList() {
-  const { globalState, setGlobalStateDispatch} = useContext(Store)
-  const setRelatedData = async (id) => {
+  const { globalState, setGlobalState} = useContext(Store)
+  const setRelatedVideo = async (id) => {
     await fetchRelatedData(id).then((res) => {
-      console.log(res.data.items)
-      setGlobalStateDispatch({type: 'SET_RELATED', payload: {related: res.data.items}})
+      setGlobalState({type: 'SET_RELATED', payload: {related: res.data.items}})
       
     })
   }
 
   useEffect(() => {
-    setRelatedData(globalState.selecte.id)
+    setRelatedVideo(globalState.selected.id)
   },[globalState.selected])
-  
     return(
       <div className={Style.sidenav}>
         {globalState.related ? globalState.related.map((video) => {
+          console.log("data",video.snippet.thumbnails.medium.url)
           return(
             <SideListItem
-              id={video.id.videoId.id}
+              id={video.id.videoId}
               key={video.id.videoId}
               src={video.snippet.thumbnails.medium.url}
               title={video.snippet.title}

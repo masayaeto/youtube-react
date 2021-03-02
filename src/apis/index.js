@@ -31,3 +31,13 @@ export const fetchSelectedData = async (id) => {
         }
     })
 }
+
+export const fetchRelatedData = async (id) => {
+    console.log(id)
+    return await youtube.get('/search', {
+        params: {
+            ...params,
+            relatedToVideoId: id
+        }
+    })
+}

@@ -15,12 +15,11 @@ const VideoDetail = () => {
         await fetchSelectedData(id).then((res) => {
             const item = res.data.items.shift()
             setGlobalState({type: 'SET_SELECTED', payload: {selected: item}})
-            console.log('res', res)
         })
     }
     useEffect(() => {
         setSelectedVideo()
-    }, [])
+    }, [location])
     return globalState.selected && globalState.selected.id ? (
         <div className={Style.wrap}>
             <VideoPlay id={globalState.selected.id}/>
