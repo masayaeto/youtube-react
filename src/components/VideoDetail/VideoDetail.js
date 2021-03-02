@@ -7,7 +7,8 @@ import Style from './VideoDetail.module.scss'
 import Linkify from 'react-linkify';
 
 const VideoDetail = () => {
-    const { globalState, setGlobalState} = useContext(Store)
+    const { globalState, setGlobalStateDispatch} = useContext(Store)
+    //useLocationを使うと現在のパスやパラメータを取得できる
     const location = useLocation()
     const setSelectedVideo = async () => {
         const searchParams = new URLSearchParams(location.search)

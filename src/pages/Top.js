@@ -6,11 +6,13 @@ import VideoGrid from '../components/VideoGrid/VideoGrid'
 import VideoGridItem from '../components/VideoGridItem/VideoGridItem'
 
 const Top = () => {
-    const {globalState, setGlobalState} = useContext(Store)
+    //useContext・・・contextに格納されているデータにシンプルにアクセス可能にする
+    const {globalState, setGlobalStateDispatch} = useContext(Store)
+    //useEffect・・・渡された関数をレンダリング後に実行する
     useEffect(() => {
         fetchPopularData().then((res) => {
-            console.log('data', res)
-            setGlobalState({type: 'SET_POPULAR', payload: {popular: res.data.items}})
+            console.log('data', res.data)
+            setGlobalStateDispatch({type: 'SET_POPULAR', payload: {popular: res.data.items}})
         })
     }, [])
     return (
@@ -22,7 +24,7 @@ const Top = () => {
                             <VideoGridItem 
                                 id={popular.id} 
                                 key={popular.id} 
-                                src={popular.snippet.thumbnails.standard.url}
+                                src={popular.snippet.thumbnails.medium.url}
                                 title={popular.snippet.title}
                             >
                             </VideoGridItem>
