@@ -7,12 +7,12 @@ import VideoGridItem from '../components/VideoGridItem/VideoGridItem'
 
 const Top = () => {
     //useContext・・・contextに格納されているデータにシンプルにアクセス可能にする
-    const {globalState, setGlobalStateDispatch} = useContext(Store)
+    const {globalState, setGlobalState} = useContext(Store)
     //useEffect・・・渡された関数をレンダリング後に実行する
     useEffect(() => {
         fetchPopularData().then((res) => {
             console.log('data', res.data)
-            setGlobalStateDispatch({type: 'SET_POPULAR', payload: {popular: res.data.items}})
+            setGlobalState({type: 'SET_POPULAR', payload: {popular: res.data.items}})
         })
     }, [])
     return (
