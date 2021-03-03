@@ -1,12 +1,13 @@
-import React, {useEffect, useContext} from 'react'
-import {useLocation} from 'react-router-dom'
-import { fetchSelectedData } from '../../apis/index'
+import React, {useContext} from 'react'
 import {Store} from '../../store/index'
 import VideoPlay from '../VideoPlay/VideoPlay'
 import Style from './VideoDetail.module.scss'
 import Linkify from 'react-linkify';
 
 const VideoDetail = () => {
+<<<<<<< HEAD
+    const { globalState, setGlobalState} = useContext(Store)
+=======
     const { globalState, setGlobalStateDispatch} = useContext(Store)
     //useLocationを使うと現在のパスやパラメータを取得できる
     const location = useLocation()
@@ -21,6 +22,7 @@ const VideoDetail = () => {
     useEffect(() => {
         setSelectedVideo()
     }, [location])
+>>>>>>> b6db049eb0ab8b1b2bc66c37901635006eaa6378
     return globalState.selected && globalState.selected.id ? (
         <div className={Style.wrap}>
             <VideoPlay id={globalState.selected.id}/>
